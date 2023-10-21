@@ -9,14 +9,50 @@
             function getComputerChoice() {
                 let random = Math.floor(Math.random() * 3)
                 if (random == 0) {
-                    return "Rock"
+                    return "rock"
                 } else if (random == 1) {
-                    return "Paper"
+                    return "paper"
                 } else {
-                    return "Scissors"
+                    return "scissors"
                 }
             }
             // console.log(getComputerChoice())
+            function playRound(playerSelection, computerSelection) {
+                let player = playerSelection
+                let computer = computerSelection
+
+                if (player == "rock" && computer == "rock") {
+                    return "It's a Tie!"
+                } else if (player == "rock" && computer == "paper") {
+                    return "You Lose! Paper beats Rock"
+                } else if (player == "rock" && computer == "scissors") {
+                    return "You Win! Rock beats Paper"
+                }
+
+                if (player == "paper" && computer == "rock") {
+                    return "You Win! Paper beats Rock"
+                } else if (player == "paper" && computer == "paper") {
+                    return "It's a Tie!"
+                } else if (player == "paper" && computer == "scissors") {
+                    return "You Lose! Scissors beats Paper"
+                }
+
+                if (player == "scissors" && computer == "rock") {
+                    return "You Lose! Rock beats Scissors"
+                } else if (player == "scissors" && computer == "paper") {
+                    return "You Win! Scissors beats Paper"
+                } else if (player == "scissors" && computer == "scissors") {
+                    return "It's a Tie!"
+                }
+            }
+
+            function playerSelection() {
+                let answer = prompt("Rock, Paper or Scissors?")
+                answer = answer.toLowerCase()
+                return answer
+            }
+            console.log(playRound(playerSelection(), getComputerChoice()))
+
         </script>
     </body>
 </html>
