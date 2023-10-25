@@ -31,7 +31,7 @@ buttons.forEach((button) => {
             playerChoiceInt = 2;
         }
         compChoiceInt = getComputerChoice(compChoice);
-        playRound();
+        playGame();
     })
 })
 
@@ -52,18 +52,40 @@ function playRound() {
     if (playerChoiceInt == 0 && compChoiceInt == 0 ||
         playerChoiceInt == 1 && compChoiceInt == 1 ||
         playerChoiceInt == 2 && compChoiceInt == 2) {
-            result.textContent = "Its a tie! You both chose " + playerChoice;
+            result.textContent = `Its a tie! You both chose ${playerChoice}`;
         }
         else if (playerChoiceInt == 0 && compChoiceInt == 2 ||
             playerChoiceInt == 1 && compChoiceInt == 0 ||
             playerChoiceInt == 2 && compChoiceInt == 1) {
-                result.textContent = "You Won! You chose " + playerChoice + " and the computer chose " + compChoice;
+                result.textContent = `You Won! You chose ${playerChoice} and the computer chose ${compChoice.Value}`;
                 playerScore++;
         }
         else if (playerChoiceInt == 0 && compChoiceInt == 1 ||
             playerChoiceInt == 1 && compChoiceInt == 2 ||
             playerChoiceInt == 2 && compChoiceInt == 0) {
-                result.textContent = "You lost! You chose " + playerChoice + " and the computer chose " + compChoice;
+                result.textContent = `You lost! You chose ${playerChoice} and the computer chose ${compChoice.Value}`;
                 compScore++;
         }
+}
+
+function playGame(){
+    result.textContent = "Choose Rock, Paper, or Scissors";
+    playRound();
+    player.textContent = "Player Score: " + playerScore;
+    computer.textContent = "Computer Score: " + compScore;
+
+    if (playerScore == 5) {
+        result.textContent = "You Won! Congratulations!"
+        playerScore = 0;
+        compScore = 0;
+        player.textContent = "Player Score: " + playerScore;
+        computer.textContent = "Computer Score: " + compScore;
+    }
+    else if (compScore == 5) {
+        result.textContent = "You Lost! Try Again!"
+        playerScore = 0;
+        compScore = 0;
+        player.textContent = "Player Score: " + playerScore;
+        computer.textContent = "Computer Score: " + compScore;
+    }
 }
