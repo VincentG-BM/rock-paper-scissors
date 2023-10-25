@@ -7,8 +7,19 @@ const buttons = document.querySelectorAll('.btn');
 let playerScore = 0;
 let compScore = 0;
 
+const player = document.querySelector("#player-score");
+player.textContent = `Player Score: ${playerScore}`;
+
+const computer = document.querySelector("#computer-score");
+computer.textContent = `Computer Score: ${compScore}`;
+
+const result = document.querySelector("#message");
+result.textContent = "Good luck!";
+
+
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
+
         playerChoice = button.id;
         if (playerChoice == "rock") {
             playerChoiceInt = 0;
@@ -20,7 +31,7 @@ buttons.forEach((button) => {
             playerChoiceInt = 2;
         }
         compChoiceInt = getComputerChoice(compChoice);
-        // playGame();
+        playRound();
     })
 })
 
@@ -36,31 +47,23 @@ function getComputerChoice(compChoice) {
     return random;
 }
 
-function playRound(playerSelection, computerSelection) {
-    let player = playerSelection
-    let computer = computerSelection
+function playRound() {
 
-    if (player == "rock" && computer == "rock") {
-        console.log("It's a Tie!")
-    } else if (player == "rock" && computer == "paper") {
-        console.log("You Lose! Paper beats Rock")
-    } else if (player == "rock" && computer == "scissors") {
-        console.log("You Win! Rock beats Paper")
-    }
-
-    if (player == "paper" && computer == "rock") {
-        console.log("You Win! Paper beats Rock")
-    } else if (player == "paper" && computer == "paper") {
-        console.log("It's a Tie!")
-    } else if (player == "paper" && computer == "scissors") {
-        console.log("You Lose! Scissors beats Paper")
-    }
-
-    if (player == "scissors" && computer == "rock") {
-        console.log("You Lose! Rock beats Scissors")
-    } else if (player == "scissors" && computer == "paper") {
-        console.log("You Win! Scissors beats Paper")
-    } else if (player == "scissors" && computer == "scissors") {
-        console.log("It's a Tie!")
-    }
+    if (playerChoiceInt == 0 && compChoiceInt == 0 ||
+        playerChoiceInt == 1 && compChoiceInt == 1 ||
+        playerChoiceInt == 2 && compChoiceInt == 2) {
+            result.textContent = "Its a tie! You both chose " + playerChoice;
+        }
+        else if (playerChoiceInt == 0 && compChoiceInt == 2 ||
+            playerChoiceInt == 1 && compChoiceInt == 0 ||
+            playerChoiceInt == 2 && compChoiceInt == 1) {
+                result.textContent = "You Won! You chose " + playerChoice + " and the computer chose " + compChoice;
+                playerScore++;
+        }
+        else if (playerChoiceInt == 0 && compChoiceInt == 1 ||
+            playerChoiceInt == 1 && compChoiceInt == 2 ||
+            playerChoiceInt == 2 && compChoiceInt == 0) {
+                result.textContent = "You lost! You chose " + playerChoice + " and the computer chose " + compChoice;
+                compScore++;
+        }
 }

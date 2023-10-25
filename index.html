@@ -6,22 +6,20 @@
         <script src="game.js" defer></script>
     </head>
     <body>
+        <h1>Rock Paper Scissors!</h1>
+        <h2>First to 5 points wins!</h2>
         <div class="buttons">
             <button class="btn" id="rock"></button>
             <button class="btn" id="paper"></button>
             <button class="btn" id="scissors"></button>
         </div>
+        <div class="result">
+            <p id="player-score"></p>
+            <p id="computer-score"></p>
+            <h4 id="message"></h4>
+        </div>
+
         <script>
-            function getComputerChoice() {
-                let random = Math.floor(Math.random() * 3)
-                if (random == 0) {
-                    return "rock"
-                } else if (random == 1) {
-                    return "paper"
-                } else {
-                    return "scissors"
-                }
-            }
             // console.log(getComputerChoice())
 
             function playerSelection() {
